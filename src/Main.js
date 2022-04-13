@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SongCard from './SongCard'
+import LoaderSong from './LoaderSong'
 import axios from "axios";
-
 
 class Main extends Component {
     state = {
@@ -16,20 +16,29 @@ class Main extends Component {
     }
 
     render() {
+        const control = this.state.arraySongs;
+        console.log(control)
         return (
             <main>
                 <div className="container-sm">
-                    <div
-                        v-if="arraySong.length > 0"
-                        className="row gy-4 justify-content-around pt-5"
-                    >
-                        {this.state.arraySongs.map((song, index) => (
-                            <SongCard key={index}
-                                song={song}
-                                className="song_card" />
-                        ))}
-                    </div>
 
+                    {
+                        control.length > 0 ? (
+                            <div
+                                className="row gy-4 justify-content-around pt-5"
+                            >
+                                {this.state.arraySongs.map((song, index) => (
+                                    <SongCard key={index}
+                                        song={song}
+                                        className="song_card" />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="row justify-content-center">
+                                <LoaderSong />
+                            </div>
+                        )
+                    }
                 </div>
             </main>
         )
