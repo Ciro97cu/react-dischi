@@ -1,26 +1,40 @@
 import React, { Component } from 'react'
 import SongCard from './SongCard'
 import LoaderSong from './LoaderSong'
+import SearchGenre from './SearchGenre'
 import axios from "axios";
 
 class Main extends Component {
     state = {
         arraySongs: [],
+        arrayGenre: [],
     }
 
     componentDidMount() {
         axios.get("https://flynn.boolean.careers/exercises/api/array/music")
             .then(response => {
                 this.setState({ arraySongs: response.data.response })
+
+                this.state.arraySongs.filter(item => {
+                    if (!this.state.arrayGenre.includes(item.genre)) {
+                        this.state.arrayGenre.push(item.genre);
+                    }
+                });
             })
     }
 
     render() {
         const control = this.state.arraySongs;
-        console.log(control)
         return (
             <main>
                 <div className="container-sm">
+
+                    <div className="row justify-content-center">
+                        <div className="col-auto">
+                            <p className="d-inline-block pe-2 text-white">Selezione per Genere</p>
+                            <SearchGenre genere={this.state.arrayGenre} />
+                        </div>
+                    </div>
 
                     {
                         control.length > 0 ? (
