@@ -37,9 +37,3 @@ class Main extends Component {
 }
 
 export default Main
-
-// immagine={song.poster}
-//                                 nomeImmagine={song.title}
-//                                 titolo={song.title}
-//                                 autore={song.author}
-//                                 anno={song.year}
