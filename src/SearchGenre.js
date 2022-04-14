@@ -16,7 +16,7 @@ class SearchGenre extends Component {
                     </option>
                 ))}
 
-            </select >
+            </select>
         )
     }
 }
